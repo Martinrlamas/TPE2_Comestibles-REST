@@ -41,7 +41,7 @@ require_once "./app/views/api.view.php";
                     if($page == null){
                     $limit = null;
                 }
-                if($page && $page != null){
+                 if($page && $page != null){
                     if($page <= 0){
                             $page = 1;
                     }
@@ -50,7 +50,7 @@ require_once "./app/views/api.view.php";
 
                             $columns = $this->productmodel->getColumnsName($sort);
 
-                        if($sort == null){
+                        if($sort == null && $order != null){
 
                             if($order == 'ASC' ||$order == 'asc' ||$order == 'DESC' ||$order == 'desc'){
 
@@ -58,7 +58,7 @@ require_once "./app/views/api.view.php";
 
                                 if($products == null){
 
-                                    $this->view->response('No se enecontro el detalle del producto', 400);
+                                    $this->view->response('No se enecontro el detalle del producto', 404);
                                     die();
                                 }
                             }
@@ -76,10 +76,14 @@ require_once "./app/views/api.view.php";
 
                                 if($products == null){
 
-                                    $this->view->response('No se enecontro el detalle del producto', 400);
+                                    $this->view->response('No se enecontro el detalle del producto', 404);
                                     die();
                                 }
                             }
+                        else if ($sort == null && $order == null){
+
+                            $products = $this->productmodel->getAll($sort,$order,$page,$limit,$filter);
+                        }
                             else{
             
                                 $this->view->response("$sort y $order no son valores validos",400);
@@ -90,8 +94,8 @@ require_once "./app/views/api.view.php";
 
                         $this->view->response("Error, paginacion mal declarada", 400);
                         die();
-                    }
-                }
+                     }
+                  }
 
                 else if($page == null && $sort != null){
 
@@ -109,7 +113,7 @@ require_once "./app/views/api.view.php";
 
                             if($products == null){
 
-                                $this->view->response('No se enecontro el detalle del producto', 400);
+                                $this->view->response('No se enecontro el detalle del producto', 404);
                                 die();
                             }
 
@@ -117,6 +121,7 @@ require_once "./app/views/api.view.php";
 
                         }
                         else if($columns == true && $order == null){
+
                                 $products = $this->productmodel->getAll($sort,$order,$page,$limit,$filter);
                         }
 
@@ -134,7 +139,7 @@ require_once "./app/views/api.view.php";
 
                         if($products == null){
 
-                            $this->view->response('No se enecontro el detalle del producto', 400);
+                            $this->view->response('No se enecontro el detalle del producto', 404);
                             die();
                         }
                     }
@@ -143,7 +148,6 @@ require_once "./app/views/api.view.php";
                 else if($products == null){
                     
                     $products = $this->productmodel->getAll();
-                    $this->view->response($products, 200);
                     
                  }
                  else{
@@ -189,7 +193,7 @@ require_once "./app/views/api.view.php";
 
                 if($product){
                     $this->productmodel->DeleteByID($id);
-                    $this->view->response($product);
+                    $this->view->response($product, 200);
                 }
                 else{
                     $this->view->response("El producto que desea eliminar no existe", 404);
