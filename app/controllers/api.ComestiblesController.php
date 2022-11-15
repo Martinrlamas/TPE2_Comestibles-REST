@@ -58,7 +58,7 @@ require_once "./app/views/api.view.php";
 
                                 if($products == null){
 
-                                    $this->view->response('No se enecontro el detalle del producto', 404);
+                                    $this->view->response('No se encontro el detalle del producto', 404);
                                     die();
                                 }
                             }
@@ -76,7 +76,7 @@ require_once "./app/views/api.view.php";
 
                                 if($products == null){
 
-                                    $this->view->response('No se enecontro el detalle del producto', 404);
+                                    $this->view->response('No se encontro el detalle del producto', 404);
                                     die();
                                 }
                             }
@@ -113,7 +113,7 @@ require_once "./app/views/api.view.php";
 
                             if($products == null){
 
-                                $this->view->response('No se enecontro el detalle del producto', 404);
+                                $this->view->response('No se encontro el detalle del producto', 404);
                                 die();
                             }
 
@@ -139,7 +139,7 @@ require_once "./app/views/api.view.php";
 
                         if($products == null){
 
-                            $this->view->response('No se enecontro el detalle del producto', 404);
+                            $this->view->response('No se encontro el detalle del producto', 404);
                             die();
                         }
                     }
