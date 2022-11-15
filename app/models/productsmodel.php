@@ -104,9 +104,10 @@ class ProductModel{
 
             // compara el valor de sort con el nombre de las columnas de productos.
 
-            $query = $this->db->prepare("SELECT *
-            FROM INFORMATION_SCHEMA.COLUMNS
-            WHERE COLUMN_NAME = '$sort' AND TABLE_NAME = 'productos'");
+            // $query = $this->db->prepare("SELECT *
+            // FROM INFORMATION_SCHEMA.COLUMNS
+            // WHERE COLUMN_NAME = '$sort' AND TABLE_NAME = 'productos'");
+            $query = $this->db->prepare("SELECT productos.*, categorias.categoria FROM productos JOIN categorias ON productos.id_categoria = categorias.id, INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME = '$sort'");
 
             $query->execute();
             $columns = $query->fetchAll(PDO::FETCH_OBJ);

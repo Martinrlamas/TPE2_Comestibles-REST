@@ -31,7 +31,7 @@ require_once "./app/views/api.view.php";
                 //inicializamos una variable Products como null
                 $products = null;
 
-               //almacenamos las querys mediante un metodo GET.
+               //almacenamos las variables querys mediante un metodo GET.
                 if (!empty($_GET['sort']) ? $sort = $_GET ['sort'] : $sort= null); 
                 if (!empty($_GET['order']) ? $order = $_GET['order'] : $order = null);
                 if (isset($_GET['page']) ? $page = $_GET['page'] : $page = null);
